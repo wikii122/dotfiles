@@ -27,5 +27,4 @@ PATH=/home/wilo/Projects/Go/bin:$PATH
 PATH=/home/wilo/Tools/bin:$PATH
 PATH=/home/wilo/.cabal/bin:$PATH
 PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH
