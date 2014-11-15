@@ -45,9 +45,9 @@ bindkey "OB" history-beginning-search-forward
 
 # Switch some useful options
 setopt inc_append_history
-setopt autocd 
-setopt nomatch 
-setopt completealiases 
+setopt autocd
+setopt nomatch
+setopt completealiases
 setopt correctall
 setopt extended_glob
 setopt no_case_glob
@@ -58,7 +58,7 @@ setopt pushd_to_home
 setopt pushd_minus
 setopt glob_dots
 
-unsetopt beep 
+unsetopt beep
 unsetopt notify
 
 # History enhancing
@@ -78,7 +78,7 @@ setopt csh_junkie_loops
 
 # Theme
 prompt walters
-#PROMPT="%{$fg[reset_color]%}[%n@%M %#]$ " 
+#PROMPT="%{$fg[reset_color]%}[%n@%M %#]$ "
 autoload zargs
 
 compctl -c .
@@ -138,7 +138,7 @@ alias -s session="vim -S"
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 export PIP_RESPECT_VIRTUALENV=true
-#source /usr/local/bin/virtualenvwrapper.sh 
+#source /usr/local/bin/virtualenvwrapper.sh
 #source /etc/bash_completion.d/virtualenvwrapper
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
@@ -147,7 +147,7 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 source /home/wilo/.rvm/scripts/rvm
 
 #Go
-export GOPATH=/home/wilo/Projects/Go 
+export GOPATH=/home/wilo/Projects/Go
 
 setopt prompt_subst
 autoload -Uz vcs_info
@@ -167,7 +167,7 @@ vcs_info_wrapper() {
   fi
 }
 
-PROMPT="%{$fg[reset_color]%}[%n@%M "$'$(vcs_info_wrapper)'"%#]$ " 
+PROMPT="%{$fg[reset_color]%}[%n@%M "$'$(vcs_info_wrapper)'"%#]$ "
 # dirstack save/load
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
   dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )

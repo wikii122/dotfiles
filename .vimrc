@@ -46,16 +46,16 @@ autocmd FileType python set textwidth=72 formatoptions=c expandtab comments+=n:#
 autocmd FileType python autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd FileType python setlocal completeopt-=preview
 
-autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab textwidth=80 formatoptions=c comments+=n:# 
+autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab textwidth=80 formatoptions=c comments+=n:#
 
 autocmd FileType haskell set expandtab textwidth=80 formatoptions=c comments+=n:--
 autocmd FileType coffee set tabstop=2 shiftwidth=2 expandtab textwidth=80 formatoptions=c comments+=n:#
 "autocmd Bufenter *.hs compiler ghc
 
-autocmd InsertEnter * :set norelativenumber 
+autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
-set smarttab 
+set smarttab
 
 " Search
 set hlsearch
@@ -79,8 +79,8 @@ set wildignore=*.o,*~,*.pyc
 "Completion
 set completeopt=longest,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-highlight Pmenu ctermbg=DarkBlue 
-highlight PmenuSel ctermfg=White ctermbg=Blue cterm=Bold  
+highlight Pmenu ctermbg=DarkBlue
+highlight PmenuSel ctermfg=White ctermbg=Blue cterm=Bold
 
 " Height of the command bar
 set cmdheight=2
@@ -111,9 +111,8 @@ let g:syntastic_python_checkers=['pylint']
 let g:syntastic_cpp_checkers=['gcc', 'cppcheck']
 let g:ctrlp_map = '<F3>'
 let g:ycm_confirm_extra_conf = 0
-
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'sol'
 " Always show statusline
 set laststatus=2
 
