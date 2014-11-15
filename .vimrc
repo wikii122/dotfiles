@@ -112,7 +112,16 @@ let g:syntastic_cpp_checkers=['gcc', 'cppcheck']
 let g:ctrlp_map = '<F3>'
 let g:ycm_confirm_extra_conf = 0
 
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
 execute pathogen#infect()
 
 map <F2> :NERDTreeToggle<CR>
 nnoremap <F5> :GundoToggle<CR>
+
