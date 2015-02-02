@@ -15,6 +15,8 @@
 " and configure vim to your own liking!
 set tabstop=4
 set shiftwidth=4
+set sts=4
+set expandtab
 set nocompatible
 set encoding=utf8
 set ffs=unix,dos,mac
@@ -42,8 +44,10 @@ set lbr
 set tw=500
 
 " Language specific
+" Trailing spaces considered harmful
+autocmd FileType c,cpp,python,ruby,haskell,go,coffee,javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 autocmd FileType python set textwidth=72 formatoptions=c expandtab comments+=n:# cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd FileType python setlocal completeopt-=preview
 
 autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab textwidth=80 formatoptions=c comments+=n:#
@@ -54,6 +58,8 @@ autocmd FileType coffee set tabstop=2 shiftwidth=2 expandtab textwidth=80 format
 
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
+
+au BufRead /tmp/mutt-* set tw=72
 
 set smarttab
 
@@ -123,5 +129,6 @@ set t_Co=256
 execute pathogen#infect()
 
 map <F2> :NERDTreeToggle<CR>
+nnoremap <F4> :CtrlPTag<cr>
 nnoremap <F5> :GundoToggle<CR>
 

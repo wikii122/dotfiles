@@ -149,6 +149,9 @@ source /home/wilo/.rvm/scripts/rvm
 #Go
 export GOPATH=/home/wilo/Projects/Go
 
+#Perl
+export PERL5LIB=/home/wilo/perl5/lib/perl5
+
 setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
@@ -180,3 +183,6 @@ chpwd() {
 #if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
 #fi
+
+PERL_MB_OPT="--install_base \"/home/wilo/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/wilo/perl5"; export PERL_MM_OPT;
