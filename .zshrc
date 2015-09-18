@@ -32,16 +32,22 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
 [[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
 [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-beginning-search
+[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-beginning-search
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
 [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 
-bindkey "OA" history-beginning-search-backward
-bindkey "OB" history-beginning-search-forward
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '\eOA' up-line-or-beginning-search
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\eOB' down-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
 
 # Switch some useful options
 setopt inc_append_history
@@ -140,14 +146,17 @@ export PROJECT_HOME=$HOME/Devel
 export PIP_RESPECT_VIRTUALENV=true
 #source /usr/local/bin/virtualenvwrapper.sh
 #source /etc/bash_completion.d/virtualenvwrapper
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+#source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
 
 # Ruby bundler
 #export GEM_HOME=~/.gem/ruby/2.0.0
-source /home/wilo/.rvm/scripts/rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -r "$HOME/.rvm/scripts/completion" ]] && source "$HOME/.rvm/scripts/completion"
 
 #Go
-export GOPATH=/home/wilo/Projects/Go
+export GOPATH=~/projects/go
+export PATH=$PATH:~/projects/go/bin
 
 #Perl
 export PERL5LIB=/home/wilo/perl5/lib/perl5

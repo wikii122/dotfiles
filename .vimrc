@@ -108,27 +108,43 @@ set mouse=a
 "autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
 "let g:jedi#show_call_signatures=0
 "let g:jedi#popup_on_dot=1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['prospector']
+let g:syntastic_python_prospector_args = "-D -w frosted -w vulture"
 "let g:syntastic_css_checkers=['prettycss']
 let g:syntastic_cpp_checkers=['gcc', 'cppcheck']
 let g:ctrlp_map = '<F3>'
 let g:ycm_confirm_extra_conf = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'ubaryd'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " Always show statusline
 set laststatus=2
 
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_prompt='» '
+let g:unite_split_rule = 'botright'
+if executable('ag')
+    let g:unite_source_grep_command='ag'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+    let g:unite_source_grep_recursive_opt=''
+endif
 
 execute pathogen#infect()
 
-map <F2> :NERDTreeToggle<CR>
-nnoremap <F4> :CtrlPTag<cr>
-nnoremap <F5> :GundoToggle<CR>
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
+nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :<C-u>Unite -no-split -buffer-name=files   -auto-preview -start-insert file_rec/async:!<cr>
+nnoremap <F4> :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <F5> :<C-u>Unite -no-split -buffer-name=buffer  -quick-match buffer<cr>
+nnoremap <F6> :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+ 
